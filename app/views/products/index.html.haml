@@ -1,0 +1,34 @@
+%h1 #{t 'crud.listing'} #{t 'model.product'}s
+
+- unless @products.empty?
+  %table.default.rounded
+    %thead
+      %tr
+        %th Marca
+        %th Nome
+        %th Medida
+        %th
+        - if current_user
+          %th
+          %th
+
+    - @products.each do |product|
+      %tr
+        %td= product.marca
+        %td= product.nome
+        %td= product.medida
+        %td
+          .small.default.btn.icon-left.entypo.icon-list
+            = link_to "#{t 'crud.show'}", product
+        - if current_user
+          %td
+            .small.default.btn.icon-left.entypo.icon-pencil
+              = link_to "#{t 'crud.edit'}", edit_product_path(product)
+          %td
+            .small.default.btn.icon-left.entypo.icon-trash
+              = link_to "#{t 'crud.destroy'}", product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- else
+  %h3 Nenhum registro encontrado.
+%br
+.large.info.btn.icon-left.entypo.icon-plus
+  = link_to "#{t 'crud.new'} #{t 'model.product'}", new_product_path

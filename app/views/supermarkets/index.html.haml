@@ -1,0 +1,33 @@
+%h1 #{t 'crud.listing'} #{t 'model.supermarket'}s
+
+- unless @supermarkets.empty?
+  %table.default.rounded
+    %thead
+      %tr
+        %th Nome
+        %th Endereco
+        %th
+        - if current_user
+          %th
+          %th
+
+    - @supermarkets.each do |supermarket|
+      %tr
+        %td= supermarket.nome
+        %td= supermarket.endereco
+        %td
+          .small.default.btn.icon-left.entypo.icon-list
+            = link_to "#{t 'crud.show'}", supermarket
+        - if current_user
+          %td
+            .small.default.btn.icon-left.entypo.icon-pencil
+              = link_to "#{t 'crud.edit'}", edit_supermarket_path(supermarket)
+          %td
+            .small.default.btn.icon-left.entypo.icon-trash
+              = link_to "#{t 'crud.destroy'}", supermarket, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- else
+  %h3 Nenhum registro encontrado.
+
+%br
+.large.info.btn.icon-left.entypo.icon-plus
+  = link_to "#{t 'crud.new'} #{t 'model.supermarket'}", new_supermarket_path

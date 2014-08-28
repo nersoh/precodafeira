@@ -1,0 +1,25 @@
+= form_for @user do |f|
+	- if @user.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+			%ul
+				- @user.errors.full_messages.each do |msg|
+					%li= msg
+	.field
+		= f.label :username, "#{t 'sign_up.username'}"
+		= f.text_field :username, class: "input"
+
+	.field
+		= f.label :email
+		= f.text_field :email, class: "input"
+
+	.field
+		= f.label :password, "#{t 'sign_up.password'}"
+		= f.password_field :password, class: "input"
+
+	.field
+		= f.label :password_confirmation, "#{t 'sign_up.password_confirmation'}"
+		= f.password_field :password_confirmation, class: "input"
+
+	.actions.large.primary.btn
+		= f.submit "#{t 'sign_up.submit'}"

@@ -1,0 +1,21 @@
+- flash.each do |name, msg|
+	= content_tag :div, msg, class: "#{name} alert"
+
+%h3 #{t 'model.supermarket'}
+%p
+	= Supermarket.find(@sale.supermarket_id).nome
+
+%h3 #{t 'model.product'}
+%p
+	= Product.find(@sale.product_id).display_name
+
+%h3 Preço Atual
+%p
+	= number_to_currency @sale.current_price, unit: "R$: ", precison: 2
+
+= render 'historico'
+
+.small.info.btn
+	= link_to "#{t 'crud.edit'}", edit_sale_path(@sale)
+.small.default.btn
+	= link_to "#{t 'crud.back'}", sales_path

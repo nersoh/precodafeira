@@ -1,0 +1,16 @@
+= form_for @supermarket do |f|
+  - if @supermarket.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@supermarket.errors.count, "error")} prohibited this supermarket from being saved:"
+      %ul
+        - @supermarket.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :nome
+    = f.text_field :nome, class: "input"
+  .field
+    = f.label :endereco
+    = f.text_field :endereco, class: "input"
+  .actions.large.primary.btn
+    = f.submit "#{t 'crud.save'}"

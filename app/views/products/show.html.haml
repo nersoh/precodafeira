@@ -1,0 +1,17 @@
+- flash.each do |name, msg|
+	= content_tag :div, msg, class: "#{name} alert"
+
+%p
+	%h4 Marca
+	= @product.marca
+%p
+	%h4 Nome
+	= @product.nome
+%p
+	%h4 Medida
+	= @product.medida
+
+.small.info.btn
+	= link_to "#{t 'crud.edit'}", edit_product_path(@product)
+.small.default.btn
+	= link_to "#{t 'crud.back'}", products_path

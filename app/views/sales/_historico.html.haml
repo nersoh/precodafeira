@@ -1,0 +1,14 @@
+- @prices = Price.where(sale_id: @sale.id).order("#{params[:sort] || :created_at } DESC")
+
+%h3 #{t 'prices.history'}
+
+%table.default.rounded
+	%thead
+		%th 
+			= link_to 'Data', sort: 'created_at'
+		%th 
+			= link_to 'Valor', sort: 'value'
+	- @prices.each do |p|
+		%tr
+			%td= p.created_at.strftime("%d/%m/%Y")
+			%td= number_to_currency p.value, unit: "R$: ", precision: 2 

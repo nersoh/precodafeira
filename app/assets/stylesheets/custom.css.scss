@@ -1,0 +1,48 @@
+.logo {
+	color: #f2f2f2;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.logged-user {
+	padding: 0 20px 0 100px;
+	color: white;
+	@media screen and (max-width: 767px) {
+		padding: 0;
+	}
+}
+
+.icon-add-supermercado {
+	position: relative;
+	top: -14px;
+}
+
+th {
+	a {
+		color: white;
+		text-decoration: none;
+		&:visited {
+			color: white;
+		}
+		&:hover {
+			background: none;
+			color: #ccc;
+		}
+	}
+}
+
+.top-supermarkets {
+	.n-produtos {
+		float: right;
+	}
+}
+
+.to-right {
+	float: right;
+}
+
+.clickable-row {
+		&:hover {
+			background-color: #f2f2f2;
+			cursor: pointer;
+	}
+}

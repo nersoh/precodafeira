@@ -1,0 +1,9 @@
+%h1 #{t 'crud.editing'} #{t 'model.supermarket'}
+
+= render 'form'
+
+.small.info.btn
+	= link_to "#{t 'crud.show'}", @supermarket
+
+.small.default.btn
+	= link_to "#{t 'crud.back'}", supermarkets_path

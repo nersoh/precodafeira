@@ -1,0 +1,23 @@
+%div.navbar#nav1
+	%a.toggle{:href => '#', "gumby-trigger"=>"#nav1 > ul"}
+		%i.icon-menu
+	%h2.four.columns.logo Preço da Feira
+	%ul.menu.four.columns
+		%li
+			= link_to "#{t 'home'}", home_index_path
+		%li
+			= link_to "#{t 'model.sale'}s", sales_path
+		%li
+			= link_to "#{t 'model.supermarket'}s", supermarkets_path
+		%li
+			= link_to "#{t 'model.product'}s", products_path
+		- if current_user
+			%li.logged-user
+				= "#{t 'hello'}, #{current_user.username}"
+			%li.medium.btn.info.icon-left.entypo.icon-logout
+				= link_to "#{t 'auth.logout.title'}", logout_path
+		- else
+			%li
+				= link_to "#{t 'sign_up.title'}", new_user_path
+			%li.medium.btn.info.icon-left.entypo.icon-login
+				= link_to "#{t 'auth.login.title'}", login_path

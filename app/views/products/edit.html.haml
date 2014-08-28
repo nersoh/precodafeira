@@ -1,0 +1,7 @@
+%h1 #{t 'crud.editing'} #{t 'model.product'}
+
+= render 'form'
+.small.info.btn
+	= link_to "#{t 'crud.show'}", @product
+.small.default.btn
+	= link_to "#{t 'crud.back'}", products_path

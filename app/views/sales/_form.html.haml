@@ -1,0 +1,27 @@
+= form_for @sale do |f|
+	- if @sale.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+			%ul
+			- @sale.errors.full_messages.each do |msg|
+				%li= msg
+
+	.field
+		= f.label :supermarket, 'Supermercado'
+		.row
+			.picker.six.columns
+				= f.collection_select(:supermarket_id, Supermarket.all, :id, :nome)
+	.field
+		= f.label :product, 'Produto'
+		.row
+			.picker.six.columns
+				= f.collection_select(:product_id, Product.all, :id, :display_name)
+
+	.field
+		= f.label :current_price, 'Preco Atual'
+		.row
+			.two.columns
+				= f.text_field :current_price, class: "input"
+
+	.actions.large.primary.btn
+		= f.submit "#{t 'crud.save'}"

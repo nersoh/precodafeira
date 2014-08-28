@@ -1,0 +1,19 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :marca
+    = f.text_field :marca, class: "input"
+  .field
+    = f.label :nome
+    = f.text_field :nome, class: "input"
+  .field
+    = f.label :medida
+    = f.text_field :medida, class: "input"
+  .actions.large.primary.btn
+    = f.submit "#{t 'crud.save'}"

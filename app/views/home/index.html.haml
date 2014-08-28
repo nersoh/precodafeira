@@ -1,0 +1,72 @@
+- @supermarkets
+- @products
+- flash.each do |name, msg|
+	= content_tag :div, msg, class: "#{name} alert"
+
+.row
+	.columns.eight
+		%h3 #{t 'sales.down'}
+		%table.default.rounded
+			%thead
+				%tr
+					%th Supermercado
+					%th Produto
+					%th Preço Atual
+					%th Variação
+			- @sales_down.each do |sale|
+				- @url = url_for(controller: 'sales', action: 'show', id: sale.id, only_path: true)
+				%tr.clickable-row(data-href=@url)
+					%td
+						= Supermarket.find(sale.supermarket_id).nome
+					%td
+						= Product.find(sale.product_id).display_name
+					%td
+						= number_to_currency sale.current_price
+					%td
+						= status_preco sale
+		%h3 #{t 'sales.up'}
+		%table.default.rounded
+			%thead
+				%tr
+					%th Supermercado
+					%th Produto
+					%th Preço Atual
+					%th Variação
+			- @sales_up.each do |sale|
+				- @url = url_for(controller: 'sales', action: 'show', id: sale.id, only_path: true)
+				%tr.clickable-row(data-href=@url)
+					%td
+						= Supermarket.find(sale.supermarket_id).nome
+					%td
+						= Product.find(sale.product_id).display_name
+					%td
+						= number_to_currency sale.current_price
+					%td
+						= status_preco sale
+	.columns.four
+		%h3 Top #{t 'model.supermarket'}s
+		%span.light.label.to-right nº #{t 'model.product'}s
+		%br
+		%ul.top-supermarkets
+			- @top_supermarkets.each_with_index do |supermarkets, index|
+				%li
+					%span.default.badge
+						= index + 1
+					%span
+						= "#{supermarkets[0]}"
+					%span.n-produtos
+						=  "#{supermarkets[1]}"
+
+
+/ BOTTOM SCRIPT
+:javascript
+	$(document).ready( function() {
+		// Carrega data-href link setado na linha de class "clickable-row" quando a mesma for clicada
+		$(".clickable-row").click( function() {
+			var href = $(this).attr("data-href");
+			console.log(href);
+			if ( $(this).attr("data-href") !== undefined ) {
+				document.location = href;
+			}
+		});
+	});

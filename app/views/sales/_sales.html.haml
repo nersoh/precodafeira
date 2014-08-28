@@ -1,0 +1,45 @@
+
+= paginate @sales, remote: true
+
+- unless @sales.empty?
+	%table.default.rounded
+		%thead
+			%tr
+				%th Produto
+				%th Supermercado
+				%th
+					= link_to  'Preço Atual', sort: 'current_price'
+				%th Preço Anterior
+				%th Variação
+				%th
+				- if current_user
+					%th
+					%th
+		- @sales.each do |sale|
+			%tr
+				%td= Product.find(sale.product_id).display_name
+				%td= Supermarket.find(sale.supermarket_id).nome
+				%td= number_to_currency sale.current_price
+				%td= number_to_currency sale.old_price
+				%td= status_preco sale
+				%td{id: ['sale', sale.id]}
+					.small.default.btn.icon-left.entypo.icon-list
+						= link_to "#{t 'crud.show'}", sale
+				- if current_user
+					%td
+						.small.default.btn.icon-left.entypo.icon-pencil
+							= link_to "#{t 'crud.edit'}", edit_sale_path(sale)
+					%td
+						.small.default.btn.icon-left.entypo.icon-trash
+							= link_to "#{t 'crud.destroy'}", sale, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, id: "remove_sale_#{sale.id}", class: "remove"
+- else
+	%h3 Nenhum registro encontrado.
+%br
+/ Código para remover linha do registro removido por Ajax
+- content_for :js do
+	:plain
+		$(document).ready( function () {
+			$(document).on('ajax:success', '.remove', function() {
+				$(this).parents("tr").remove();
+			});
+		});

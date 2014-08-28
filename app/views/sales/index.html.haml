@@ -1,0 +1,12 @@
+= javascript_include_tag "pagination"
+
+- if notice
+	%p#notice.success.alert
+		= notice
+%h1 #{t 'crud.listing'} #{t 'model.sale'}s
+
+#sales
+	= render 'sales'
+
+.large.info.btn.icon-left.entypo.icon-plus
+	= link_to "#{t 'crud.new'} #{t 'model.sale'}", new_sale_path

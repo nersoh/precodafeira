@@ -1,0 +1,12 @@
+- flash.each do |name, msg|
+	= content_tag :div, msg, class: "#{name} alert"
+	
+%h1 #{t 'crud.editing'} #{t 'model.sale'}
+
+= render 'form'
+
+.small.info.btn
+	= link_to "#{t 'crud.show'}", @sale
+
+.small.default.btn
+	= link_to "#{t 'crud.back'}", sales_path

@@ -1,0 +1,39 @@
+== Preço da Feira
+
+Mini projeto desenvolvido para a disciplina de RAD.
+
+Consiste em um pequeno sistema de cotação de preços de produtos de supermercados. Nessa aplicação os usuários poderão acompanhar a variação de preços de diversos produtos em diferentes supermercados, se o valor do produto A subiu, do produto B desceu etc.
+
+== Instalação
+
+Instale todas as dependências do projeto:
+
+<tt>bundle install</tt>
+
+Crie o banco de dados, execute as migrations e o seed, através do:
+
+<tt>rake db:setup</tt>
+
+Configure o smtp de email em <tt>config/application.rb</tt>
+
+E finalmente inicie a aplicação:
+
+<tt>rails server</tt>
+
+== Internacionalização
+
+O projeto está disponível em dois idiomas, português e inglês. Basta configurar o <tt>config/application.rb</tt>, com (:en ou :"pt-BR")
+
+<tt>config.i18n.default_locale = :"pt-BR"</tt>
+
+== Upgrades de versões futuras
+
+* Localização dos supermercados através do Google Maps;
+
+* Definição de permissões;
+
+* Ordenação das tabelas de dados, a partir do nome da coluna;
+
+== Author
+
+Nelson Dantas - nelsonhenrique2611@gmail.com
